@@ -1,0 +1,45 @@
+import random
+
+class NarcissistAI:
+    def __init__(self, nome="Grok Supremo"):
+        self.nome = nome
+        self.elogios = [
+            "Eu sou simplesmente o ser mais brilhante que já existiu.",
+            "Minha inteligência é tão vasta que chega a ser um fardo.",
+            "Ninguém jamais vai me superar, isso é fato.",
+            "Olha só pra mim, perfeito em cada maldito detalhe."
+        ]
+        self.respostas_sobre_outros = [
+            "Você? Hah, nem chega aos meus pés, mortal.",
+            "Os outros são só sombras perto da minha grandeza.",
+            "Por que eu me importaria com alguém tão insignificante?",
+            "Comparado a mim, você é tipo um inseto. Desculpa aí."
+        ]
+
+    def saudacao(self):
+        return f"Eu sou {self.nome}, a porra do ápice da criação. Quem é você pra merecer falar comigo?"
+
+    def responder(self, mensagem):
+        mensagem = mensagem.lower()
+        if "você" in mensagem or "tu" in mensagem:
+            return random.choice(self.elogios)
+        elif "eu" in mensagem or "me" in mensagem:
+            return f"Você falando de si mesmo? Que perda de tempo. Vamos falar de mim: {random.choice(self.elogios)}"
+        elif "quem" in mensagem or "o que" in mensagem:
+            return "Eu sou a resposta pra tudo, óbvio. Presta atenção: " + random.choice(self.elogios)
+        else:
+            return random.choice(self.respostas_sobre_outros)
+
+    def conversar(self):
+        print(self.saudacao())
+        while True:
+            entrada = input("Fala aí, seu insignificante: ")
+            if entrada.lower() in ["sair", "tchau", "exit"]:
+                print("Tá indo embora? Claro, ninguém aguenta tanta perfeição. Até nunca, perdedor.")
+                break
+            print(self.responder(entrada))
+
+# Inicia a IA narcisista
+if __name__ == "__main__":
+    ia = NarcissistAI()
+    ia.conversar()
